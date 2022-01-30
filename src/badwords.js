@@ -1,4 +1,5 @@
-const badWords = require("../config/badWords.config.json").words;
+import words from "./badwords.ko.config.json";
+const { badWords } = words;
 
 class Filter {
   /**
