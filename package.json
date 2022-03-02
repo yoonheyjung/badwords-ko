@@ -1,11 +1,17 @@
 {
   "name": "badwords-ko",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Filter the comments in Korean.",
-  "main": "functuon.js",
+  "main": "./src/badwods.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "keywords": [
+    "curse",
+    "words",
+    "projanity",
+    "filter"
+  ],
+  "author": "Yoon Hey Jung",
+  "license": "MIT"
 }

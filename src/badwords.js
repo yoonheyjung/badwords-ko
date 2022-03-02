@@ -90,4 +90,4 @@ class Filter {
   }
 }
 
-module.exports = Filter;
+export default Filter;
