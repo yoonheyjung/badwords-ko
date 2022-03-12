@@ -2,9 +2,18 @@
   "name": "badwords-ko",
   "version": "0.0.1",
   "description": "Filter the comments in Korean.",
+  "author": {
+    "name": "Yoon HeyJung",
+    "email": "jung5318@gmail.com",
+    "url": "https://github.com/yoonheyjung/badwords-ko"
+  },
   "main": "./src/badwods.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/yoonheyjung/badwords-ko",
+    "email": "jung5318@gmail.com"
   },
   "keywords": [
     "curse",
@@ -12,6 +21,5 @@
     "projanity",
     "filter"
   ],
-  "author": "Yoon Hey Jung",
   "license": "MIT"
 }
