@@ -1,4 +1,4 @@
-# bad-words
+# badwords-ko
 
 A javascript filter for badwords
 
@@ -25,7 +25,7 @@ As of version 2, requires you either have an environment that understands ES2016
 ## Usage
 
 ```js
-import Filter from "bad-words";
+import { Filter } from "badwords-ko";
 const filter = new Filter();
 
 console.log(filter.clean("욕을 합니다 개새끼")); //욕을 합니다 ***
@@ -34,7 +34,7 @@ console.log(filter.clean("욕을 합니다 개새끼")); //욕을 합니다 ***
 ### Placeholder Overrides
 
 ```js
-import Filter from "bad-words";
+import { Filter } from "badwords-ko";
 const customFilter = new Filter({ placeHolder: "x" });
 
 customFilter.clean("욕을 합니다 개새끼"); //욕을 합니다 xxx

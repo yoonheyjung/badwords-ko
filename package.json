@@ -1,13 +1,13 @@
 {
   "name": "badwords-ko",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Filter the comments in Korean.",
   "author": {
     "name": "Yoon HeyJung",
     "email": "jung5318@gmail.com",
     "url": "https://github.com/yoonheyjung/badwords-ko"
   },
-  "main": "./src/badwods.js",
+  "main": "./src/badwords.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
