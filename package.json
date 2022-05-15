@@ -1,6 +1,6 @@
 {
   "name": "badwords-ko",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Filter the comments in Korean.",
   "author": {
     "name": "Yoon HeyJung",
