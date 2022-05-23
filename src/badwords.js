@@ -1,4 +1,4 @@
-const badWords = require("./badwords.ko.config.json").words;
+import { badWords } from "./badwords.ko.config";
 
 class Filter {
   /**
@@ -89,4 +89,4 @@ class Filter {
   }
 }
 
-module.exports = Filter;
+export default Filter;
