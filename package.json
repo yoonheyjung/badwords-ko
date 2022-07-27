@@ -10,7 +10,7 @@
   "main": "./src/badwords.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node ./src/badwords.js"
+    "start": "node ./src/badwords.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,11 @@
     "url": "https://github.com/yoonheyjung/badwords-ko/issues",
     "email": "jung5318@gmail.com"
   },
+  "files": [
+    "dist",
+    "lib",
+    "!dist/test"
+  ],
   "keywords": [
     "bad",
     "word",
@@ -28,11 +33,5 @@
     "projanity",
     "filter"
   ],
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/cli": "^7.17.10",
-    "@babel/core": "^7.17.10",
-    "@babel/node": "^7.17.10",
-    "@babel/preset-env": "^7.17.10"
-  }
+  "license": "MIT"
 }

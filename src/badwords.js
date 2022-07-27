@@ -1,4 +1,4 @@
-const badWords = require("./badwords.ko.config.json").words;
+const badWords = require("./badwords.ko.config").badWords;
 
 class Filter {
   /**
@@ -45,7 +45,7 @@ class Filter {
    */
   replaceWord(string) {
     return string
-      .replace(this.regex, "*")
+      .replace(this.regex, this.placeHolder)
       .replace(this.replaceRegex, this.placeHolder);
   }
 

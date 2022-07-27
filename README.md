@@ -16,28 +16,35 @@ A javascript filter for badwords
 
 ## Requirements
 
-As of version 2, requires you either have an environment that understands ES2016 and beyond or a transpiler like Babel.
+Requires you either have an environment that understands ES2016 and beyond or a transpiler like Babel.
 
 ## Installation
 
     npm install badwords-ko --save
 
+</br>
+
+---
+
+</br>
+
 ## Usage
 
 ```js
-import { Filter } from "badwords-ko";
+import Filter from "badwords-ko";
+
 const filter = new Filter();
 
-console.log(filter.clean("욕을 합니다 개새끼")); //욕을 합니다 ***
+console.log(filter.clean("욕을 합니다 개새끼")); // 욕을 합니다 ***
 ```
 
 ### Placeholder Overrides
 
 ```js
-import { Filter } from "badwords-ko";
+import Filter from "badwords-ko";
 const customFilter = new Filter({ placeHolder: "x" });
 
-customFilter.clean("욕을 합니다 개새끼"); //욕을 합니다 xxx
+customFilter.clean("욕을 합니다 개새끼"); // 욕을 합니다 xxx
 ```
 
 ### Regex Overrides
@@ -54,30 +61,30 @@ const filter = new Filter({ replaceRegex: /[A-Za-z0-9가-힣_]/g });
 ```js
 const filter = new Filter();
 
-filter.addWords("some", "bad", "word");
+filter.addWords("무진장", "나쁜", "말");
 
-filter.clean("some bad word!"); //**** *** ****!
+filter.clean("무진장 나쁜 말!"); //**** *** ****!
 
 //or use an array using the spread operator
 
-const newBadWords = ["some", "bad", "word"];
+const newBadWords = ["무진장", "나쁜", "말"];
 
 filter.addWords(...newBadWords);
 
-filter.clean("some bad word!"); //**** *** ****!
+filter.clean("무진장 나쁜 말!"); //**** *** ****!
 
 //or
 
-const filter = new Filter({ list: ["some", "bad", "word"] });
+const filter = new Filter({ list: ["무진장", "나쁜", "말"] });
 
-filter.clean("some bad word!"); //**** *** ****!
+filter.clean("무진장 나쁜 말!"); //**** *** ****!
 ```
 
 ### Instantiate with an empty list
 
 ```js
 const filter = new Filter({ emptyList: true });
-filter.clean("hell this wont clean anything"); //hell this wont clean anything
+filter.clean("아무것도 지워지지 않습니다. "); //hell this wont clean anything
 ```
 
 ### Remove words from the blacklist
@@ -85,17 +92,17 @@ filter.clean("hell this wont clean anything"); //hell this wont clean anything
 ```js
 let filter = new Filter();
 
-filter.removeWords("hells", "sadist");
+filter.removeWords("시발", "에라이퉷");
 
-filter.clean("some hells word!"); //some hells word!
+filter.clean("some 시발 에이라이퉷!"); //some 시발 에이라이퉷!
 
 //or use an array using the spread operator
 
-let removeWords = ["hells", "sadist"];
+let removeWords = ["시발", "에라이퉷"];
 
 filter.removeWords(...removeWords);
 
-filter.clean("some sadist hells word!"); //some sadist hells word!
+filter.clean("some 에라이퉷 시발 에이라이퉷!"); //some 에라이퉷 시발 에라이퉷!
 ```
 
 ### API
