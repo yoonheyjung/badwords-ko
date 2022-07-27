@@ -10,7 +10,7 @@
   "main": "./src/badwords.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "babel-node ./src/badwords.js"
+    "start": "node ./src/badwords.js"
   },
   "repository": {
     "type": "git",
@@ -33,12 +33,5 @@
     "projanity",
     "filter"
   ],
-  "license": "MIT",
-  "devDependencies": {
-    "@babel/cli": "^7.17.10",
-    "@babel/core": "^7.17.10",
-    "@babel/node": "^7.17.10",
-    "@babel/preset-env": "^7.17.10",
-    "babel-plugin-module-resolver": "^4.1.0"
-  }
+  "license": "MIT"
 }
