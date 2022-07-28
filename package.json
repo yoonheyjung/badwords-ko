@@ -1,6 +1,6 @@
 {
   "name": "badwords-ko",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Filter the comments in Korean.",
   "author": {
     "name": "Yoon HeyJung",
@@ -21,9 +21,7 @@
     "email": "jung5318@gmail.com"
   },
   "files": [
-    "dist",
-    "lib",
-    "!dist/test"
+    "src/**/*"
   ],
   "keywords": [
     "bad",
