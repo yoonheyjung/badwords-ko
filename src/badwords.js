@@ -1,4 +1,5 @@
-const badWords = require("./badwords.ko.config").badWords;
+// const badWords = require("./badwords.ko.config").badWords;
+const { badWords } = require("./badwords.ko.config");
 
 class Filter {
   /**
@@ -13,16 +14,14 @@ class Filter {
    * @param {string} options.splitRegex - Regular expression used to split a string into words.
    */
   constructor(options = {}) {
-    Object.assign(this, {
-      list:
-        (options.emptyList && []) ||
-        Array.prototype.concat.apply(badWords, [options.list || []]),
+    this.options = {
+      list: options.emptyList ? [] : [...badWords, ...(options.list || [])],
       exclude: options.exclude || [],
       splitRegex: options.splitRegex || /\s/,
       placeHolder: options.placeHolder || "*",
-      regex: options.regex || /[^a-zA-Z0-9|\$|\@]|\^/g,
+      regex: options.regex || /[^a-zA-Z0-9|$|@]|^/g,
       replaceRegex: options.replaceRegex || /\w/g,
-    });
+    };
   }
 
   /**
@@ -30,13 +29,12 @@ class Filter {
    * @param {string} string - String to evaluate for profanity.
    */
   isProfane(string) {
-    return (
-      this.list.filter((word) => {
-        word = word.trim();
-        const wordExp = new RegExp(word, "g");
-        return !this.exclude.includes(word) && wordExp.test(string);
-      }).length > 0 || false
-    );
+    const { exclude, list } = this.options;
+
+    return list.some((word) => {
+      const wordExp = new RegExp(word.trim(), "g");
+      return !exclude.includes(word) && wordExp.test(string);
+    });
   }
 
   /**
@@ -44,9 +42,11 @@ class Filter {
    * @param {string} string - String to replace.
    */
   replaceWord(string) {
+    const { regex, replaceRegex, placeHolder } = this.options;
+
     return string
-      .replace(this.regex, this.placeHolder)
-      .replace(this.replaceRegex, this.placeHolder);
+      .replace(regex, placeHolder)
+      .replace(replaceRegex, placeHolder);
   }
 
   /**
@@ -54,11 +54,11 @@ class Filter {
    * @param {string} string - Sentence to filter.
    */
   clean(string) {
+    const { splitRegex } = this.options;
+
     return string
-      .split(this.splitRegex)
-      .map((word) => {
-        return this.isProfane(word) ? this.replaceWord(word) : word;
-      })
+      .split(splitRegex)
+      .map((word) => (this.isProfane(word) ? this.replaceWord(word) : word))
       .join(" ");
   }
 
@@ -66,14 +66,14 @@ class Filter {
    * Add word(s) to blacklist filter / remove words from whitelist filter
    * @param {...string} word - Word(s) to add to blacklist
    */
-  addWords() {
-    let words = Array.from(arguments);
+  addWords(...wordsToAdd) {
+    const { list, exclude } = this.options;
 
-    this.list.push(...words);
-
-    words.forEach((word) => {
-      if (this.exclude.includes(word)) {
-        this.exclude.splice(this.exclude.indexOf(word), 1);
+    list.push(...wordsToAdd);
+    wordsToAdd.forEach((word) => {
+      const index = exclude.indexOf(word);
+      if (index !== -1) {
+        exclude.splice(index, 1);
       }
     });
   }
@@ -82,10 +82,10 @@ class Filter {
    * Add words to whitelist filter
    * @param {...string} word - Word(s) to add to whitelist.
    */
-  removeWords() {
-    this.exclude.push(
-      ...Array.from(arguments).map((word) => word.toLowerCase())
-    );
+  removeWords(...wordsToRemove) {
+    const { exclude } = this.options;
+
+    exclude.push(...wordsToRemove.map((word) => word.toLowerCase()));
   }
 }
 
